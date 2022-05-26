@@ -13,14 +13,12 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
-from django.urls import include, path
+from todo import views
+from django.urls import path
 
+app_name = 'todo'
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('account/', include('account.urls')),
-    path('todo/', include('todo.urls')),
-    path('api-auth/', include('rest_framework.urls', namespace='rest_framework')) # 이거 역할이 뭐임???
-
+    path('', views.todo_list, name='todo_list'),
+    path('<int:todo_id>/', views.todo, name='todo'),
 ]
